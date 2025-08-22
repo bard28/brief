@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>Bot Qualification Survey</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --surface: #ffffff;
+            --surface-dark: #1e293b;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border: rgba(148, 163, 184, 0.2);
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 
+                0 25px 50px -12px var(--shadow),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--surface-dark) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            padding: 50px 40px;
+            background: var(--surface);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            font-weight: 600;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--surface);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover:not(:focus) {
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        select.form-control {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 16px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 48px;
+            appearance: none;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkbox-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .checkbox-item:hover::before {
+            left: 100%;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.2);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 16px;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            border-radius: 6px;
+        }
+
+        .checkbox-item span {
+            font-weight: 500;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .radio-item:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .radio-item input[type="radio"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .parameter-group {
+            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(99, 102, 241, 0.03) 100%);
+            padding: 32px;
+            border-radius: 20px;
+            margin-top: 24px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            position: relative;
+        }
+
+        .parameter-group h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .parameter-group h4::before {
+            content: '⚙️';
+            margin-right: 12px;
+            font-size: 1.1em;
+        }
+
+        .parameter-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .parameter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+        }
+
+        .status-message {
+            margin-top: 32px;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+            border: 1px solid;
+        }
+
+        .status-success {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            color: #065f46;
+            border-color: #34d399;
+        }
+
+        .status-error {
+            background: linear-gradient(135deg, #fef2f2 0%, #fef7f7 100%);
+            color: #991b1b;
+            border-color: #f87171;
+        }
+
+        /* Floating elements animation */
+        .floating-element {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+            background: rgba(6, 182, 212, 0.3);
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+            background: rgba(245, 158, 11, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile-first responsive design */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                background-attachment: fixed;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 16px;
+                box-shadow: 0 10px 25px -5px var(--shadow);
+            }
+            
+            .header {
+                padding: 32px 20px;
+                text-align: center;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 12px;
+            }
+            
+            .header p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .form-section {
+                padding: 24px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+                line-height: 1.3;
+            }
+            
+            .section-title::before {
+                width: 3px;
+                height: 24px;
+            }
+            
+            .form-group {
+                margin-bottom: 24px;
+            }
+            
+            .form-group label {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+            
+            .form-control {
+                padding: 14px 16px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                border-radius: 12px;
+            }
+            
+            select.form-control {
+                background-position: right 12px center;
+                background-size: 14px;
+                padding-right: 40px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-top: 12px;
+            }
+            
+            .checkbox-item {
+                padding: 16px;
+                border-radius: 12px;
+                font-size: 0.95rem;
+            }
+            
+            .checkbox-item input[type="checkbox"] {
+                margin-right: 12px;
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
+            }
+            
+            .radio-group {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 12px;
+            }
+            
+            .radio-item {
+                padding: 14px 16px;
+                border-radius: 10px;
+                font-size: 0.95rem;
+            }
+            
+            .radio-item input[type="radio"] {
+                margin-right: 10px;
+                width: 16px;
+                height: 16px;
+                flex-shrink: 0;
+            }
+            
+            .parameter-group {
+                padding: 20px 16px;
+                border-radius: 16px;
+                margin-top: 20px;
+            }
+            
+            .parameter-group h4 {
+                font-size: 1.1rem;
+                margin-bottom: 16px;
+            }
+            
+            .parameter-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 16px;
+            }
+            
+            .btn {
+                padding: 16px 24px;
+                font-size: 16px;
+                border-radius: 12px;
+                margin-top: 32px;
+            }
+            
+            .status-message {
+                margin-top: 24px;
+                padding: 16px;
+                border-radius: 12px;
+                font-size: 0.95rem;
+            }
+            
+            /* Improve touch targets */
+            .checkbox-item,
+            .radio-item {
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+            }
+            
+            /* Optimize floating elements for mobile */
+            .floating-element {
+                display: none; /* Hide on mobile for better performance */
+            }
+        }
+        
+        @media (min-width: 481px) and (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 20px;
+            }
+            
+            .header {
+                padding: 40px 28px;
+            }
+            
+            .header h1 {
+                font-size: 2.3rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .form-section {
+                padding: 32px 28px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 24px;
+            }
+            
+            .parameter-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 14px;
+            }
+            
+            .radio-group {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 750px;
+            }
+            
+            .header {
+                padding: 50px 35px;
+            }
+            
+            .form-section {
+                padding: 40px 35px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+        }
+        
+        /* Landscape mobile orientation */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .header p {
+                font-size: 0.95rem;
+            }
+            
+            .floating-element {
+                display: none;
+            }
+        }
+        
+        /* Accessibility improvements for mobile */
+        @media (max-width: 768px) {
+            /* Increase tap targets */
+            .form-control {
+                min-height: 44px;
+            }
+            
+            .btn {
+                min-height: 48px;
+            }
+            
+            /* Better focus indicators on mobile */
+            .form-control:focus {
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+                transform: none; /* Remove transform on mobile for better UX */
+            }
+            
+            .checkbox-item:hover,
+            .radio-item:hover {
+                transform: none; /* Remove hover transform on mobile */
+            }
+            
+            /* Optimize animations for mobile */
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .btn:hover {
+                transform: none;
+                box-shadow: 0 8px 16px -4px rgba(99, 102, 241, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="header-content">
+                <h1>Bot Qualification Survey</h1>
+                <p>Help us understand your needs and configure the perfect solution</p>
+            </div>
+        </div>
+
+        <form id="qualificationForm" class="form-section">
+            <!-- Contact Information -->
+            <div class="section-title">Contact Information</div>
+            
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company/Organization</label>
+                <input type="text" id="company" name="company" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="role">Your Role</label>
+                <select id="role" name="role" class="form-control">
+                    <option value="">Select your role</option>
+                    <option value="business_owner">Business Owner</option>
+                    <option value="marketing_manager">Marketing Manager</option>
+                    <option value="sales_manager">Sales Manager</option>
+                    <option value="customer_service">Customer Service</option>
+                    <option value="it_manager">IT Manager</option>
+                    <option value="developer">Developer</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Business Qualification -->
+            <div class="section-title">Business Information</div>
+
+            <div class="form-group">
+                <label for="industry">Industry</label>
+                <select id="industry" name="industry" class="form-control">
+                    <option value="">Select your industry</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="finance">Finance</option>
+                    <option value="real_estate">Real Estate</option>
+                    <option value="hospitality">Hospitality</option>
+                    <option value="technology">Technology</option>
+                    <option value="consulting">Consulting</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="companySize">Company Size</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="companySize" value="1-10">
+                        1-10 employees
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="companySize" value="11-50">
+                        11-50 employees
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="companySize" value="51-200">
+                        51-200 employees
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="companySize" value="200+">
+                        200+ employees
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="budget">Monthly Budget Range</label>
+                <select id="budget" name="budget" class="form-control">
+                    <option value="">Select budget range</option>
+                    <option value="under_500">Under $500</option>
+                    <option value="500_1000">$500 - $1,000</option>
+                    <option value="1000_2500">$1,000 - $2,500</option>
+                    <option value="2500_5000">$2,500 - $5,000</option>
+                    <option value="5000_plus">$5,000+</option>
+                </select>
+            </div>
+
+            <!-- Target Actions -->
+            <div class="section-title">Primary Goals & Actions</div>
+
+            <div class="form-group">
+                <label>What do you want the bot to help with? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="lead_generation">
+                        <span>Lead Generation</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="customer_support">
+                        <span>Customer Support</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="appointment_booking">
+                        <span>Appointment Booking</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="product_recommendations">
+                        <span>Product Recommendations</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="order_processing">
+                        <span>Order Processing</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="faq_assistance">
+                        <span>FAQ Assistance</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="data_collection">
+                        <span>Data Collection</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="targetActions" value="survey_feedback">
+                        <span>Survey & Feedback</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="primaryGoal">Primary Goal (Most Important)</label>
+                <select id="primaryGoal" name="primaryGoal" class="form-control">
+                    <option value="">Select primary goal</option>
+                    <option value="increase_sales">Increase Sales</option>
+                    <option value="improve_customer_service">Improve Customer Service</option>
+                    <option value="reduce_workload">Reduce Manual Workload</option>
+                    <option value="collect_leads">Collect More Leads</option>
+                    <option value="automate_processes">Automate Processes</option>
+                    <option value="improve_engagement">Improve User Engagement</option>
+                </select>
+            </div>
+
+            <!-- Action Parameters -->
+            <div class="section-title">Configuration Parameters</div>
+
+            <div class="parameter-group">
+                <h4>Response Settings</h4>
+                <div class="parameter-row">
+                    <div class="form-group">
+                        <label for="responseTime">Expected Response Time</label>
+                        <select id="responseTime" name="responseTime" class="form-control">
+                            <option value="instant">Instant</option>
+                            <option value="under_5min">Under 5 minutes</option>
+                            <option value="under_30min">Under 30 minutes</option>
+                            <option value="under_1hour">Under 1 hour</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tone">Bot Personality/Tone</label>
+                        <select id="tone" name="tone" class="form-control">
+                            <option value="professional">Professional</option>
+                            <option value="friendly">Friendly</option>
+                            <option value="casual">Casual</option>
+                            <option value="formal">Formal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="parameter-group">
+                <h4>Integration Settings</h4>
+                <div class="parameter-row">
+                    <div class="form-group">
+                        <label for="platforms">Preferred Platforms</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="platforms" value="website">
+                                <span>Website</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="platforms" value="facebook">
+                                <span>Facebook Messenger</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="platforms" value="whatsapp">
+                                <span>WhatsApp</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="platforms" value="telegram">
+                                <span>Telegram</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="parameter-row">
+                    <div class="form-group">
+                        <label for="workingHours">Working Hours</label>
+                        <select id="workingHours" name="workingHours" class="form-control">
+                            <option value="24_7">24/7</option>
+                            <option value="business_hours">Business Hours Only</option>
+                            <option value="custom">Custom Schedule</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Primary Language</label>
+                        <select id="language" name="language" class="form-control">
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="russian">Russian</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="specialRequirements">Special Requirements or Notes</label>
+                <textarea id="specialRequirements" name="specialRequirements" class="form-control" placeholder="Any specific features, integrations, or requirements you need..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit Survey</button>
+            
+            <div id="statusMessage" class="status-message"></div>
+        </form>
+    </div>
+
+    <script>
+        // Replace with your Google Apps Script URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        
+        document.getElementById('qualificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const statusMessage = document.getElementById('statusMessage');
+            const submitButton = this.querySelector('.btn');
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            statusMessage.style.display = 'none';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Process regular form fields
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    // Handle multiple values (checkboxes)
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Add timestamp and additional metadata
+            data.timestamp = new Date().toISOString();
+            data.userAgent = navigator.userAgent;
+            data.referrer = document.referrer;
+            
+            // Send to Google Sheets
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // Show success message
+                statusMessage.className = 'status-message status-success';
+                statusMessage.style.display = 'block';
+                statusMessage.textContent = '✅ Survey submitted successfully! We will contact you within 24 hours.';
+                
+                // Optional: Reset form after success
+                setTimeout(() => {
+                    this.reset();
+                }, 3000);
+                
+                // Send confirmation email (optional)
+                if (data.email) {
+                    sendConfirmationEmail(data.email, data.fullName);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusMessage.className = 'status-message status-error';
+                statusMessage.style.display = 'block';
+                statusMessage.textContent = '❌ Error submitting survey. Please try again or contact support.';
+            })
+            .finally(() => {
+                submitButton.textContent = 'Submit Survey';
+                submitButton.disabled = false;
+            });
+        });
+        
+        // Optional: Send confirmation email
+        function sendConfirmationEmail(email, name) {
+            // This would require additional email service integration
+            console.log(`Sending confirmation to ${email} for ${name}`);
+        }
+        
+        // Optional: Track form analytics
+        function trackFormSubmission(data) {
+            // Google Analytics or other tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'engagement',
+                    'event_label': 'bot_qualification_survey'
+                });
+            }
+        }
+        
+        // Optional: Save progress locally
+        function saveFormProgress() {
+            const formData = new FormData(document.getElementById('qualificationForm'));
+            const data = Object.fromEntries(formData);
+            localStorage.setItem('surveyProgress', JSON.stringify(data));
+        }
+        
+        // Optional: Load saved progress
+        function loadFormProgress() {
+            const saved = localStorage.getItem('surveyProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    const element = document.querySelector(`[name="${key}"]`);
+                    if (element) {
+                        if (element.type === 'checkbox' || element.type === 'radio') {
+                            element.checked = true;
+                        } else {
+                            element.value = data[key];
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Auto-save progress on form changes
+        document.getElementById('qualificationForm').addEventListener('input', saveFormProgress);
+        
+        // Load progress on page load
+        window.addEventListener('load', loadFormProgress);
+    </script>
+</body>
+</html>
